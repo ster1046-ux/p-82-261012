@@ -16,6 +16,9 @@ class App {
 //        } else if(input == "등록") {
 //
 //        }
+            val rq: Rq = Rq(input)
+            val actionName = rq.actionName
+
             when (input) {
                 "종료" -> break
                 "등록" -> {
@@ -47,6 +50,15 @@ class App {
                     wiseSayings.reversed().forEach {
                         println("${it.id} / ${it.content} / ${it.author}")
                     }
+                }
+
+                "삭제" -> {
+                    val id: Int = rq.getParamAsInt("id", 0)
+
+                    wiseSayings.removeIf {
+                        it.id == id
+                    }
+                    println("${id}번 명언이 삭제되었습니다.")
                 }
             }
         }
