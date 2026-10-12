@@ -6,19 +6,13 @@ class App(
 ) {
 
     fun run() {
-        var lastId = 0
-        val wiseSayings = mutableListOf<WiseSaying>()
 
         println("== 명언 앱 ==")
         while (true) {
             print("명령) ")
+
             val input = readln()
 
-//        if(input == "종료") {
-//            break
-//        } else if(input == "등록") {
-//
-//        }
             val rq: Rq = Rq(input)
             val actionName = rq.actionName
 
