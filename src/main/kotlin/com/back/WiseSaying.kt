@@ -1,7 +1,7 @@
 package com.back
 
 data class WiseSaying(
-    val id: Int,
+    var id: Int = 0,
     var content: String,
     var author: String
 
@@ -10,9 +10,17 @@ data class WiseSaying(
     // val를 이용하고 밑에서 copy를 쓰는 방식이 더 코틀린스러우나
     // JPA를 어차피 써야되기 때문에 수정할 수 있는게 나아서 VAR 사용
 ) {
+
+    constructor(content: String, author: String) : this(0, content, author)
+
     fun modify(newContent: String, newAuthor: String): WiseSaying {
         this.content = newContent
         this.author = newAuthor
         return this
     }
+
+    fun isNew(): Boolean {
+        return id == 0
+    }
+
 }

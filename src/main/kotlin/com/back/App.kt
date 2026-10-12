@@ -1,7 +1,7 @@
 package com.back
 
 class App(
-    val wiseSayingController: WiseSayingController,
+    val wiseSayingController: WiseSayingController = WiseSayingController(),
     val systemController: SystemController = SystemController()
 ) {
 
