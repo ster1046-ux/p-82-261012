@@ -4,6 +4,7 @@ class App {
 
     fun run() {
         var lastId = 0
+        val wiseSayings = mutableListOf<WiseSaying>()
 
         println("== 명언 앱 ==")
         while (true) {
@@ -25,7 +26,27 @@ class App {
 
                     val id = ++lastId
 
-                    println("${id}번 명언이 등록되었습니다.")
+                    // 강사가 생각하기에 적합한 스코프함수는 also
+                    // 대상이 주변부냐 핵심이냐에 따라서 it/this 구분
+                    // wiseSayings.add 연산의 주체. wiseSaying이 핵심이 아니기 때문에
+                    // 주인공이 아니기 때문에 it으로 받는게 좋겠다고 생각함
+                    // 하지만 중요한건 also가 맞다가 아니라 본인이 쓴 함수가 다른 사람에게도 설득력이 있기만 하면 됨.
+//                    val wiseSaying = WiseSaying(id, content, author)
+//                    wiseSayings.add(wiseSaying)
+
+                    val wiseSaying = WiseSaying(id, content, author).also {
+                        wiseSayings.add(it)
+                    }
+
+
+                    println("${wiseSaying.id}번 명언이 등록되었습니다.")
+                }
+                "목록" -> {
+                    println("번호 / 명언 / 작가")
+                    println("-------------------")
+                    wiseSayings.reversed().forEach {
+                        println("${it.id} / ${it.content} / ${it.author}")
+                    }
                 }
             }
         }
