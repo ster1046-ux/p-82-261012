@@ -17,7 +17,10 @@ class App(
             val actionName = rq.actionName
 
             when (actionName) {
-                "종료" -> systemController.exit()
+                "종료" -> {
+                    systemController.exit()
+                    break
+                }
                 "등록" -> wiseSayingController.write()
                 "목록" -> wiseSayingController.list()
                 "삭제" -> wiseSayingController.delete(rq)
